@@ -3,6 +3,15 @@
 bool flip = false;
 int current = 1;
 
+//Displacement Vectors
+MyVector3 moveRight ={  0.001, 0, 0 };
+MyVector3 moveLeft = { -0.001, 0, 0 };
+MyVector3 moveUp =	 {  0, 0.001, 0 };
+MyVector3 moveDown = {  0,-0.001, 0 };
+
+MyVector3 scaleVec = { 1.1,1.1,0 };
+
+
 Game::Game() : window(VideoMode(800, 600), "OpenGL Cube")
 {
 
@@ -109,11 +118,206 @@ void Game::update()
 	elapsed = clock.getElapsedTime();
 
 	cout << "Update up" << endl;
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	{
+		for (int i = 0; i < 36; i++)
+		{
+
+			int x = i * 3;
+			int y = i * 3 + 1;
+			int z = i * 3 + 2;
+			MyVector3 currentVector = MyVector3{ vertices[x],vertices[y],vertices[z] };
+
+			currentVector = currentVector + moveRight;
+
+			vertices[x] = currentVector.getX();
+			vertices[y] = currentVector.getY();
+			vertices[z] = currentVector.getZ();
+		}		
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+
+		
+		for (int i = 0; i < 36; i++)
+		{
+			int x = i * 3;
+			int y = i * 3 + 1;
+			int z = i * 3 + 2;
+
+			MyVector3 currentVector = MyVector3{ vertices[x],vertices[y],vertices[z] };
+
+			currentVector = currentVector + moveLeft;
+
+			vertices[x] = currentVector.getX();
+			vertices[y] = currentVector.getY();
+			vertices[z] = currentVector.getZ();
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		for (int i = 0; i < 36; i++)
+		{
+			
+			int x = i * 3;
+			int y = i * 3 + 1;
+			int z = i * 3 + 2;
+
+			MyVector3 currentVector = MyVector3{ vertices[x],vertices[y],vertices[z] };
+
+			currentVector = currentVector + moveUp;
+
+			vertices[x] = currentVector.getX();
+			vertices[y] = currentVector.getY();
+			vertices[z] = currentVector.getZ();
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+		for (int i = 0; i < 36; i++)
+		{
+
+			int x = i * 3;
+			int y = i * 3 + 1;
+			int z = i * 3 + 2;
+
+			MyVector3 currentVector = MyVector3{ vertices[x],vertices[y],vertices[z] };
+
+			currentVector = currentVector + moveDown;
+
+			vertices[x] = currentVector.getX();
+			vertices[y] = currentVector.getY();
+			vertices[z] = currentVector.getZ();
+		}
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	{
+		for (int i = 0; i < 36; i++)
+		{
+
+			int x = i * 3;
+			int y = i * 3 + 1;
+			int z = i * 3 + 2;
+
+			MyVector3 currentVector = MyVector3{ vertices[x],vertices[y],vertices[z] };
+
+			currentVector = MyMatrix3::scale(0.99) * currentVector;
+			//currentVector = currentVector * 1.01;
+
+			vertices[x] = currentVector.getX();
+			vertices[y] = currentVector.getY();
+			vertices[z] = currentVector.getZ();
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		for (int i = 0; i < 36; i++)
+		{
+
+			int x = i * 3;
+			int y = i * 3 + 1;
+			int z = i * 3 + 2;
+			
+
+			MyVector3 currentVector = MyVector3{ vertices[x],vertices[y],vertices[z] };
+
+			currentVector = MyMatrix3::scale(1.01) * currentVector;
+			//currentVector = currentVector * 1.01;
+
+			vertices[x] = currentVector.getX();
+			vertices[y] = currentVector.getY();
+			vertices[z] = currentVector.getZ();
+		}
+	}
+
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::U))
+	{
+		for (int i = 0; i < 36; i++)
+		{
+
+			int x = i * 3;
+			int y = i * 3 + 1;
+			int z = i * 3 + 2;
+
+			MyVector3 currentVector = MyVector3{ vertices[x],vertices[y],vertices[z] };
+
+			currentVector = MyMatrix3::rotationZ(0.01) * currentVector;
+
+			vertices[x] = currentVector.getX();
+			vertices[y] = currentVector.getY();
+			vertices[z] = currentVector.getZ();
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::J))
+	{
+		for (int i = 0; i < 36; i++)
+		{
+
+			int x = i * 3;
+			int y = i * 3 + 1;
+			int z = i * 3 + 2;
+
+			MyVector3 currentVector = MyVector3{ vertices[x],vertices[y],vertices[z] };
+
+			
+			currentVector = MyMatrix3::rotationZ(-0.01) * currentVector;
+
+			vertices[x] = currentVector.getX();
+			vertices[y] = currentVector.getY();
+			vertices[z] = currentVector.getZ();
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::H))
+	{
+		for (int i = 0; i < 36; i++)
+		{
+
+			int x = i * 3;
+			int y = i * 3 + 1;
+			int z = i * 3 + 2;
+
+			MyVector3 currentVector = MyVector3{ vertices[x],vertices[y],vertices[z] };
+
+			currentVector = MyMatrix3::rotationX(0.01) * currentVector;
+
+			vertices[x] = currentVector.getX();
+			vertices[y] = currentVector.getY();
+			vertices[z] = currentVector.getZ();
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))
+	{
+		for (int i = 0; i < 36; i++)
+		{
+
+			int x = i * 3;
+			int y = i * 3 + 1;
+			int z = i * 3 + 2;
+
+			MyVector3 currentVector = MyVector3{ vertices[x],vertices[y],vertices[z] };
+
+
+			currentVector = MyMatrix3::rotationX(-0.01) * currentVector;
+
+			vertices[x] = currentVector.getX();
+			vertices[y] = currentVector.getY();
+			vertices[z] = currentVector.getZ();
+		}
+	}
+
+
+
+	glDrawArrays(GL_TRIANGLES, 0, 36);
 }
 
 void Game::render()
 {
 	cout << "Drawing" << endl;
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_COLOR_ARRAY);
@@ -125,9 +329,11 @@ void Game::render()
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 
 	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, &vertex_index);
+	
 
 	glDisableClientState(GL_COLOR_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
+
 
 	window.display();
 
